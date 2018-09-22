@@ -212,11 +212,3 @@ template<typename T> void SortUtils<T>::runMergeSort(vector<T>& input, const Sor
 	doMergeSort(input, 0, input.size()-1, sortOrder);
 }
 
-
-
-
-
-
-
-
-
