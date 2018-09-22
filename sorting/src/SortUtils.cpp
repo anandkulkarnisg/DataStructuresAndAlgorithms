@@ -228,3 +228,16 @@ template<typename T> void SortUtils<T>::runShellSort(vector<T>& input, const Sor
 	}
 }
 
+template<typename T> bool SortUtils<T>::arrayCompare(const vector<T>& vec1, const vector<T>& vec2)
+{
+	if(vec1.size() != vec2.size())
+		return(false);
+	size_t size = vec1.size();
+	for(unsigned int i=0; i<size; ++i)
+	{
+		if(vec1[i] != vec2[i])
+			return(false);
+	} 
+	return(true);
+}
+

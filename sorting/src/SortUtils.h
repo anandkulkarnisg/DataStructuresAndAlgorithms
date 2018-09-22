@@ -31,6 +31,7 @@ template<typename T> class SortUtils
 		static void runShellSort(std::vector<T>&, const SortOrder& = SortOrder::asc);
 		static bool isSorted(std::vector<T>&);
 		static void showItems(const std::vector<T>&);
+		static bool arrayCompare(const std::vector<T>&, const std::vector<T>&);
 };
 
 #endif
