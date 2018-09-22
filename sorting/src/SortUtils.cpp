@@ -14,13 +14,6 @@ template<typename T> void SortUtils<T>::showItems(const vector<T>& input)
 	cout << input[size-1] << '\n';	
 }
 
-template<typename T> void SortUtils<T>::doSwap(T& item1, T& item2)
-{
-	T temp = std::move(item1);
-	item2 = std::move(item1);
-	item2 = std::move(temp);
-}
-
 template<typename T> void SortUtils<T>::swapPtr(T* item1, T* item2)
 {
 	T temp = *item1;
@@ -61,7 +54,7 @@ template<typename T> void SortUtils<T>::runBubbleSort(vector<T>& input, const So
 		{
 			if(SortUtils<T>::sortOrder(input[i], input[j], sortOrder))
 			{
-				doSwap(input[i], input[j]);
+				swapPtr(&input[i], &input[j]);
 			}
 		}
 	}

@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
 	SortUtils<int>::runInsertionSort(inputArray, SortOrder::asc);
 	SortUtils<int>::showItems(inputArray);
 
-	SortUtils<int>::runInsertionSort(inputArray, SortOrder::desc);
+	SortUtils<int>::runBubbleSort(inputArray, SortOrder::desc);
 	SortUtils<int>::showItems(inputArray);
 	
 	SortUtils<int>::runSelectionSort(inputArray, SortOrder::asc);

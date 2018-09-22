@@ -12,7 +12,6 @@ template<typename T> class SortUtils
 {
 	private:
 		static bool sortOrder(const T&, const T&, const SortOrder&);
-		static void doSwap(T&,T&);
 		static void swapPtr(T*,T*);
 		static void doQuickSort(std::vector<T>&, const int&, const int&, const SortOrder&);
 		static int doPartition(std::vector<T>&, const int&, const int&, const SortOrder&);
