@@ -1,0 +1,13 @@
+
+1. The sorting algorithm must be templated. i.e data agnostic.
+2. The sorting algorithms must be implemented as helper/utility class, we dont need to create objects of the class for sorting purpose.
+3. Each sorting algorithm must have testable unit Test Cases.
+4. Overall sorting algorithms must be capable of procuding performance comparison.
+5. Implement the most common sorting algorithms below.
+
+   - insertion , bubble and selection sort [ less important ].
+   - Quick sort , heap sort and merge sort [ Implement these important ones ].
+   - shell , bucket and radix sorts [ Required and asked in facebook interview preparation ].
+ 
+
+
