@@ -27,5 +27,8 @@ int main(int argc, char* argv[])
 	SortUtils<int>::runMergeSort(inputArray, SortOrder::desc);
 	SortUtils<int>::showItems(inputArray);
 
+	SortUtils<int>::runShellSort(inputArray, SortOrder::asc);
+	SortUtils<int>::showItems(inputArray);
+
 	return(0);
 }

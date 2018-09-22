@@ -10,7 +10,6 @@ enum class SortOrder { asc , desc };
 
 template<typename T> class SortUtils
 {
-
 	private:
 		static bool sortOrder(const T&, const T&, const SortOrder&);
 		static void doSwap(T&,T&);
@@ -29,6 +28,7 @@ template<typename T> class SortUtils
 		static void runHeapSort(std::vector<T>&, const SortOrder& = SortOrder::asc);
 		static void runMergeSort(std::vector<T>&, const SortOrder& = SortOrder::asc);
 		static void runSort(std::vector<T>&, const SortType&, const SortOrder& = SortOrder::asc);
+		static void runShellSort(std::vector<T>&, const SortOrder& = SortOrder::asc);
 		static bool isSorted(std::vector<T>&);
 		static void showItems(const std::vector<T>&);
 };

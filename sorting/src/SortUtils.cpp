@@ -212,3 +212,19 @@ template<typename T> void SortUtils<T>::runMergeSort(vector<T>& input, const Sor
 	doMergeSort(input, 0, input.size()-1, sortOrder);
 }
 
+template<typename T> void SortUtils<T>::runShellSort(vector<T>& input, const SortOrder& sortOrder)
+{
+	size_t size = input.size();
+	for(int gap=(size/2); gap>0; gap/=2)
+	{
+		for(unsigned int j=gap; j<size; ++j)
+		{
+			for(int k=(j-gap); k>=0; k-=gap)
+			{
+				if(SortUtils<T>::sortOrder(input[k], input[k+gap], sortOrder))
+					SortUtils<T>::swapPtr(&input[k+gap], &input[k]);
+			}
+		}
+	}
+}
+
