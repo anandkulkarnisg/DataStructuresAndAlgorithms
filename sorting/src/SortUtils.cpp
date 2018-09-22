@@ -72,12 +72,14 @@ template<typename T> void SortUtils<T>::runSelectionSort(vector<T>& input, const
 				min = j;
 		}
 		if( min != i)
-			SortUtils<T>::swapPtr(&input[min], &input[i]);
+			swapPtr(&input[min], &input[i]);
 	}
 }
 
 template<typename T> int SortUtils<T>::doPartition(vector<T>& input, const int& low, const int& high, const SortOrder& sortOrder)
 {
+	int pivotIdx = low + rand() %(high-low);	
+	swapPtr(&input[pivotIdx], &input[high]);
 	T pivot=input[high];
 	int i = low - 1;
 
@@ -86,10 +88,10 @@ template<typename T> int SortUtils<T>::doPartition(vector<T>& input, const int& 
 		if(SortUtils<T>::sortOrder(pivot, input[j], sortOrder))
 		{
 			++i;
-			SortUtils<T>::swapPtr(&input[i], &input[j]);			
+			swapPtr(&input[i], &input[j]);			
 		}
 	}
-	SortUtils<T>::swapPtr(&input[i+1], &input[high]);
+	swapPtr(&input[i+1], &input[high]);
 	return(i+1);
 }
 
@@ -122,7 +124,7 @@ template<typename T> void SortUtils<T>::doHeapify(vector<T>& input, const int& s
 
 	if(largest != i)
 	{
-		SortUtils<T>::swapPtr(&input[i], &input[largest]);
+		swapPtr(&input[i], &input[largest]);
 		doHeapify(input, size, largest, sortOrder);
 	}
 }
@@ -137,7 +139,7 @@ template<typename T> void SortUtils<T>::runHeapSort(vector<T>& input, const Sort
 
 	for(int i=size-1; i>=0; --i)
 	{
-		SortUtils<T>::swapPtr(&input[i], &input[0]);
+		swapPtr(&input[i], &input[0]);
 		doHeapify(input, i, 0, sortOrder);
 	}
 }
@@ -215,8 +217,57 @@ template<typename T> void SortUtils<T>::runShellSort(vector<T>& input, const Sor
 			for(int k=(j-gap); k>=0; k-=gap)
 			{
 				if(SortUtils<T>::sortOrder(input[k], input[k+gap], sortOrder))
-					SortUtils<T>::swapPtr(&input[k+gap], &input[k]);
+					swapPtr(&input[k+gap], &input[k]);
 			}
+		}
+	}
+}
+
+template<typename T> void SortUtils<T>::runTimInsertionSort(vector<T>& input, const int& low, const int& high, const SortOrder& sortOrder)
+{
+	size_t size = high;
+	for(unsigned int i=low; i<=size; ++i)
+	{
+		T key=input[i];
+		int j=i-1;
+		while(j>=0 && SortUtils<T>::sortOrder(input[j], key, sortOrder))
+		{
+			input[j+1]=input[j];
+			--j;
+		}
+		input[j+1]=key;
+	}
+}
+
+template<typename T> void SortUtils<T>::runTimSort(vector<T>& input, const SortOrder& sortOrder)
+{
+	// TimSort is combination of InsertionSort and MergeSort techniques.
+	// Step 1 : We do first the insertion sort in blocks of 32.
+	// Sort individual subarrays of size RUN
+	int runSize = 32;
+	int size = input.size();
+
+	for (int i = 0; i < size; i+=runSize)
+		runTimInsertionSort(input, i, min((i+runSize-1), (size-1)), sortOrder);
+
+	// start merging from size RUN (or 32). It will merge
+	// to form size 64, then 128, 256 and so on ....
+	for (int i = runSize; i < size; i = 2*i)
+	{
+		// pick starting point of left sub array. We
+		// are going to merge arr[left..left+size-1]
+		// and arr[left+size, left+2*size-1]
+		// After every merge, we increase left by 2*size
+		for (int left = 0; left < size; left += 2*i)
+		{
+			// find ending point of left sub array
+			// mid+1 is starting point of right sub array
+			int mid = left + i - 1;
+			int right = std::min((left + 2*i - 1), (size-1));
+
+			// merge sub array arr[left.....mid] &
+			// arr[mid+1....right]
+			mergeArrays(input, left, mid, right, sortOrder);
 		}
 	}
 }

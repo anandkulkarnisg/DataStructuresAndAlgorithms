@@ -1,6 +1,8 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include<algorithm>
+#include<bits/stdc++.h>
 
 #ifndef SortUtils_H
 #define SortUtils_H
@@ -21,6 +23,7 @@ template<typename T> class SortUtils
 
 	public:
 		static void runInsertionSort(std::vector<T>&, const SortOrder& = SortOrder::asc);
+		static void runTimInsertionSort(std::vector<T>& , const int& , const int&, const SortOrder& = SortOrder::asc);
 		static void runBubbleSort(std::vector<T>&, const SortOrder& = SortOrder::asc);
 		static void runSelectionSort(std::vector<T>&, const SortOrder& = SortOrder::asc);
 		static void runQuickSort(std::vector<T>&, const SortOrder& = SortOrder::asc);
@@ -28,6 +31,7 @@ template<typename T> class SortUtils
 		static void runMergeSort(std::vector<T>&, const SortOrder& = SortOrder::asc);
 		static void runSort(std::vector<T>&, const SortType&, const SortOrder& = SortOrder::asc);
 		static void runShellSort(std::vector<T>&, const SortOrder& = SortOrder::asc);
+		static void runTimSort(std::vector<T>&, const SortOrder& = SortOrder::asc);
 		static bool isSorted(std::vector<T>&);
 		static void showItems(const std::vector<T>&);
 		static bool arrayCompare(const std::vector<T>&, const std::vector<T>&);

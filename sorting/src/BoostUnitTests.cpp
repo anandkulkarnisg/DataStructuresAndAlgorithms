@@ -106,3 +106,19 @@ BOOST_AUTO_TEST_CASE(DescendingMergeSortTest)
 	BOOST_CHECK(testCaseResultStatus == true);
 }
 
+BOOST_AUTO_TEST_CASE(AscendingTimSortTest)
+{
+    vector<int> unitTestVec = testCaseVector;
+    SortUtils<int>::runTimSort(unitTestVec, SortOrder::asc);
+    bool testCaseResultStatus = SortUtils<int>::arrayCompare(unitTestVec, ascending);
+    BOOST_CHECK(testCaseResultStatus == true);
+}
+
+BOOST_AUTO_TEST_CASE(DescendingTimSortTest)
+{
+    vector<int> unitTestVec = testCaseVector;
+    SortUtils<int>::runTimSort(unitTestVec, SortOrder::desc);
+    bool testCaseResultStatus = SortUtils<int>::arrayCompare(unitTestVec, descending);
+    BOOST_CHECK(testCaseResultStatus == true);
+}
+
