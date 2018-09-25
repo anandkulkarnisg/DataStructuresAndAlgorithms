@@ -241,6 +241,7 @@ template<typename T> void SortUtils<T>::runTimInsertionSort(vector<T>& input, co
 
 template<typename T> void SortUtils<T>::runTimSort(vector<T>& input, const SortOrder& sortOrder)
 {
+	// Check this Algorithm : https://codereview.stackexchange.com/questions/113821/natural-merge-sort-in-java-follow-up-3
 	// TimSort is combination of InsertionSort and MergeSort techniques.
 	// Step 1 : We do first the insertion sort in blocks of 32.
 	// Sort individual subarrays of size RUN
